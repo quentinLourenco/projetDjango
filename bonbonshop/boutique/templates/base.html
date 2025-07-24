@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Ma Boutique de Bonbons{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'accueil' %}">🍬 Boutique de Bonbons</a></h1>
+        <nav>
+            <a href="{% url 'panier' %}">Panier</a> |
+            {% if user.is_authenticated %}
+                <a href="{% url 'compte_client' %}">Mon Compte</a> |
+                <a href="{% url 'logout' %}">Déconnexion</a>
+            {% else %}
+                <a href="{% url 'login' %}">Connexion</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 - Ma Boutique de Bonbons</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+<h2>Nos Bonbons</h2>
+
+<form method="get">
+    <label>Filtrer par catégorie :</label>
+    <select name="categorie" onchange="this.form.submit()">
+        <option value="">-- Toutes --</option>
+        {% for c in categories %}
+            <option value="{{ c.id }}" {% if request.GET.categorie == c.id|stringformat:"s" %}selected{% endif %}>
+                {{ c.nom }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+
+<ul>
+    {% for article in articles %}
+        <li>
+            <a href="{% url 'article_detail' article.id %}">{{ article.nom }}</a> - {{ article.prix }}€
+        </li>
+    {% empty %}
+        <li>Aucun article trouvé.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

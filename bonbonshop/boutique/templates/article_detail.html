@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ article.nom }}{% endblock %}
+
+{% block content %}
+<h2>{{ article.nom }}</h2>
+<p>{{ article.description }}</p>
+<p>Prix : {{ article.prix }}€</p>
+
+<form method="post" action="{% url 'ajouter_panier' article.id %}">
+    {% csrf_token %}
+    <input type="number" name="quantite" value="1" min="1">
+    <button type="submit">Ajouter au panier</button>
+</form>
+{% endblock %}

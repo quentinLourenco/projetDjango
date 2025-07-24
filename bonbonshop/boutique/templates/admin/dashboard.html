@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Dashboard Admin{% endblock %}
+
+{% block content %}
+<h2>Tableau de bord</h2>
+
+<p><strong>Chiffre d'affaire total :</strong> {{ ca_total }}€</p>
+
+<h3>Commandes validées</h3>
+<ul>
+    {% for commande in commandes %}
+        <li>{{ commande.client }} - {{ commande.total }}€ - {{ commande.date_commande }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

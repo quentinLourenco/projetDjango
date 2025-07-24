@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Mon compte{% endblock %}
+
+{% block content %}
+<h2>Bienvenue {{ user.username }}</h2>
+
+<h3>Mes commandes</h3>
+<ul>
+    {% for commande in commandes %}
+        <li>
+            {{ commande.date_commande }} - {{ commande.total }}€ - 
+            {% if commande.validee %}✅ Validée{% else %}⏳ En attente{% endif %}
+        </li>
+    {% empty %}
+        <li>Aucune commande pour l’instant.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
